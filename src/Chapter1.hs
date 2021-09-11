@@ -642,10 +642,10 @@ specifying complex expressions.
 sumLast2 :: Int -> Int
 sumLast2 n =
     let preparedNumber = if n < 0 then n * (-1) else n
-        twoLastDigits = mod preparedNumber 100
-        lastDigit = mod twoLastDigits 10
-        beforeLastDigit = div twoLastDigits 10
-    in beforeLastDigit + lastDigit
+        twoLastDigs = mod preparedNumber 100
+        lastDig = mod twoLastDigs 10
+        beforeLastDig = div twoLastDigs 10
+    in beforeLastDig + lastDig
 
 
 {- |
@@ -671,7 +671,7 @@ firstDigit n
     | preparedNumber < 10 = n
     | otherwise = firstDigit (div (preparedNumber - mod preparedNumber 10) 10)
     where
-        preparedNumber = floor (sqrt (fromIntegral (n * n)))
+        preparedNumber = floor (sqrt (fromIntegral (n ^ (2 :: Int))))
 
 
 {-
