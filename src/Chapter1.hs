@@ -491,7 +491,7 @@ Implement a function that returns the last digit of a given number.
   whether it works for you!
 -}
 lastDigit :: Int -> Int
-lastDigit n = mod n 10
+lastDigit n = if n < 0 then mod (n * (-1)) 10 else mod n 10
 
 
 {- |
@@ -575,14 +575,7 @@ False
 -}
 
 isVowel :: Char -> Bool
-isVowel c
-    | c == 'a' = True
-    | c == 'e' = True
-    | c == 'i' = True
-    | c == 'o' = True
-    | c == 'u' = True
-    | c == 'y' = True
-    | otherwise = False
+isVowel c = c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'y'
 
 
 {- |
@@ -648,10 +641,11 @@ specifying complex expressions.
 
 sumLast2 :: Int -> Int
 sumLast2 n =
-    let truncated = mod n 100
-        last = mod truncated 10
-        beforeLast = div truncated 10
-    in beforeLast + last
+    let preparedNumber = if n < 0 then n * (-1) else n
+        twoLastDigits = mod preparedNumber 100
+        lastDigit = mod twoLastDigits 10
+        beforeLastDigit = div twoLastDigits 10
+    in beforeLastDigit + lastDigit
 
 
 {- |
@@ -673,9 +667,11 @@ aren't ready for this boss yet!
 -}
 
 firstDigit :: Int -> Int
-firstDigit n 
-    | n < 10 = n
-    | otherwise = firstDigit (div (n - mod n 10) 10)
+firstDigit n
+    | preparedNumber < 10 = n
+    | otherwise = firstDigit (div (preparedNumber - mod preparedNumber 10) 10)
+    where
+        preparedNumber = floor (sqrt (fromIntegral (n * n)))
 
 
 {-
