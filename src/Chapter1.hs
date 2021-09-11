@@ -668,10 +668,10 @@ aren't ready for this boss yet!
 
 firstDigit :: Int -> Int
 firstDigit n
-    | preparedNumber < 10 = n
+    | preparedNumber < 10 = preparedNumber
     | otherwise = firstDigit (div (preparedNumber - mod preparedNumber 10) 10)
     where
-        preparedNumber = floor (sqrt (fromIntegral ((n ^ 2) :: Int) :: Double))
+        preparedNumber = floor (sqrt (fromIntegral (n ^ (2 :: Int)) :: Double))
 
 
 {-
