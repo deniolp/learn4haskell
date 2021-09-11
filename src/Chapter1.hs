@@ -671,7 +671,7 @@ firstDigit n
     | preparedNumber < 10 = n
     | otherwise = firstDigit (div (preparedNumber - mod preparedNumber 10) 10)
     where
-        preparedNumber = floor (sqrt (fromIntegral (n ^ (2 :: Int))))
+        preparedNumber = floor (sqrt (fromIntegral (n ^ 2) :: Double))
 
 
 {-
