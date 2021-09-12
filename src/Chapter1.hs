@@ -491,7 +491,7 @@ Implement a function that returns the last digit of a given number.
   whether it works for you!
 -}
 lastDigit :: Int -> Int
-lastDigit n = if n < 0 then mod (n * (-1)) 10 else mod n 10
+lastDigit n = mod (abs n) 10
 
 
 {- |
@@ -643,8 +643,7 @@ sumLast2 :: Int -> Int
 sumLast2 n =
     let preparedNumber = if n < 0 then n * (-1) else n
         twoLastDigs = mod preparedNumber 100
-        lastDig = mod twoLastDigs 10
-        beforeLastDig = div twoLastDigs 10
+        (lastDig, beforeLastDig) = divMod twoLastDigs 10
     in beforeLastDig + lastDig
 
 
